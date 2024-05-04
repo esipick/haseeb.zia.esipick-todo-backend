@@ -12,7 +12,8 @@ const service = {
     const sortBy = req.query.sortBy;
     
     let sortedTodos = [];
-    sortedTodos = todos.slice().sort((a, b) => {
+    var todoList = todos.filter((x)=> x.isDeleted != 1)
+    sortedTodos = todoList.slice().sort((a, b) => {
       if (sortDirection === 'asc') {
           return a[sortBy] - b[sortBy];
       } else {
@@ -22,8 +23,7 @@ const service = {
 
     let pagination = sortedTodos.slice(startIndex,endIndex);
     
-    var todoList = pagination.filter((x)=> x.isDeleted != 1)
-    return todoList;
+    return pagination;
 },
 
 getTaskById: (req, res) => {

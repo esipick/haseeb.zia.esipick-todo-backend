@@ -58,7 +58,7 @@ const todos = [
   {
     id:8,
     todo:'this is 8 todo',
-    priority:'low',
+    priority:'high',
     status:'done',
     percentage:80,
     isDeleted:0
@@ -66,8 +66,8 @@ const todos = [
   {
     id:9,
     todo:'this is 9 todo',
-    priority:'low',
-    status:'done',
+    priority:'medium',
+    status:'todo',
     percentage:90,
     isDeleted:0
 },
@@ -75,7 +75,7 @@ const todos = [
     id:10,
     todo:'this is 10 todo',
     priority:'low',
-    status:'done',
+    status:'inProgress',
     percentage:100,
     isDeleted:0
 },
