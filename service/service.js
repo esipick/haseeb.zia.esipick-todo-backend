@@ -3,8 +3,27 @@ require('dotenv').config();
 const service = {
 
   getTasks: (req, res) => {
-      var todoList = todos.filter((x)=> x.isDeleted != 1)
-   return todoList;
+
+    let page = parseInt(req.query.page);
+    let limit = parseInt(req.query.limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = startIndex + limit;
+    const sortDirection = req.query.sortDirection;
+    const sortBy = req.query.sortBy;
+    
+    let sortedTodos = [];
+    sortedTodos = todos.slice().sort((a, b) => {
+      if (sortDirection === 'asc') {
+          return a[sortBy] - b[sortBy];
+      } else {
+          return b[sortBy] - a[sortBy];
+      }
+  });
+
+    let pagination = sortedTodos.slice(startIndex,endIndex);
+    
+    var todoList = pagination.filter((x)=> x.isDeleted != 1)
+    return todoList;
 },
 
 getTaskById: (req, res) => {
